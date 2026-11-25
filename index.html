@@ -275,7 +275,7 @@ footer a:hover{color:#fff}
   <h2 class="r d1" style="font-size:clamp(40px,6vw,76px);margin-top:14px">Вот как это <em>выглядит</em></h2>
   <div class="a-row">
     <div class="a-side l r d2"><b>MARRY ME</b>буквы в человеческий рост, красная дорожка и сердце из роз</div>
-    <div class="a-frame r d1"><video data-src="media/aerial.mp4" poster="media/aerial.jpg" muted loop playsinline></video></div>
+    <div class="a-frame"><video data-src="media/aerial.mp4" poster="media/aerial.jpg" muted loop playsinline></video></div>
     <div class="a-side r d3"><b>Салют</b>фонтаны огня в момент, когда она говорит «да»</div>
   </div>
 </div></section>
@@ -296,7 +296,7 @@ footer a:hover{color:#fff}
       <a class="btn line" href="#order" data-occ="Предложение руки и сердца">Хочу так же</a>
     </div>
   </div>
-  <div class="phone3d r d1"><div class="glow"></div>
+  <div class="phone3d"><div class="glow"></div>
     <div class="phone" id="phone"><div class="scr"><video data-src="media/g3.mp4" poster="media/g3.jpg" muted loop playsinline></video></div></div>
   </div>
 </div></section>
@@ -306,7 +306,7 @@ footer a:hover{color:#fff}
 <section class="designs" id="designs"><div class="wrap">
   <p class="eyebrow r">Выберите оформление</p>
   <p class="neon r d1" id="neon">Will you marry me?</p>
-  <div class="ring r d2" id="ring"><div class="ring-in" id="ringIn"></div></div>
+  <div class="ring" id="ring"><div class="ring-in" id="ringIn"></div></div>
   <div class="chips r" id="chips"></div>
   <p class="ds-note r">Белые, красные и розовые сердца, светящиеся буквы, неон на казахском, русском и английском. Надпись сделаем любую — с именем.</p>
 </div></section>
@@ -397,8 +397,8 @@ const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
 const smooth = (a, b, v) => { const t = clamp((v - a) / (b - a)); return t * t * (3 - 2 * t); };
 
 // loader
-addEventListener("load", () => setTimeout(() => { document.getElementById("loader").classList.add("done"); document.body.classList.remove("lock"); }, 1500));
-setTimeout(() => { document.getElementById("loader").classList.add("done"); document.body.classList.remove("lock"); }, 4000);
+addEventListener("load", () => setTimeout(() => { document.getElementById("loader").classList.add("done"); document.body.classList.remove("lock"); }, 900));
+setTimeout(() => { document.getElementById("loader").classList.add("done"); document.body.classList.remove("lock"); }, 2200);
 
 /* ---------- series rows ---------- */
 const ROWS = [
