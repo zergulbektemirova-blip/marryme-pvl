@@ -79,15 +79,13 @@ nav .btn{padding:11px 20px;font-size:10px}
 .hint{position:absolute;bottom:48px;left:50%;transform:translateX(-50%);font-size:10px;letter-spacing:.35em;text-transform:uppercase;color:var(--muted);z-index:3;transition:opacity .5s}
 
 /* aerial: the overhead shot opens up to full screen as you scroll */
-#aerial{height:220vh;position:relative;background:var(--bg)}
-.a-stage{position:sticky;top:0;height:100vh;overflow:hidden;display:grid;place-items:center}
-.a-bg{position:absolute;inset:-40px;filter:blur(40px) brightness(.45) saturate(1.3)}
-.a-frame{position:relative;height:100vh;aspect-ratio:9/16;max-width:100vw;overflow:hidden;will-change:transform,border-radius;box-shadow:0 0 120px rgba(194,58,90,.35)}
-.a-cap{position:absolute;left:0;right:0;bottom:9vh;text-align:center;z-index:2;pointer-events:none}
-.a-cap h2{font-size:clamp(40px,6vw,84px);text-shadow:0 4px 40px rgba(0,0,0,.8)}
-.a-side{position:absolute;top:50%;transform:translateY(-50%);z-index:2;max-width:260px;font-size:15px;color:#e8dcd6}
-.a-side.l{left:6vw;text-align:right}.a-side.r{right:6vw}
-.a-side b{display:block;font-family:var(--serif);font-weight:300;font-size:48px;color:var(--champ);line-height:1}
+/* aerial: plain video, no scroll effects (they stuttered on phones) */
+#aerial{background:radial-gradient(ellipse at 50% 40%,var(--wine),var(--bg) 70%);text-align:center}
+.a-row{display:flex;align-items:center;justify-content:center;gap:clamp(24px,5vw,70px);margin-top:44px}
+.a-frame{width:min(400px,86vw);aspect-ratio:9/16;border-radius:26px;overflow:hidden;flex:0 0 auto;box-shadow:0 0 0 1px rgba(217,195,165,.25),0 40px 100px -20px rgba(194,58,90,.55)}
+.a-side{max-width:240px;font-size:15px;color:#e8dcd6;text-align:left}
+.a-side.l{text-align:right}
+.a-side b{display:block;font-family:var(--serif);font-weight:300;font-size:46px;color:var(--champ);line-height:1;margin-bottom:8px}
 @media (max-width:860px){.a-side{display:none}}
 
 .marquee{border-block:1px solid rgba(217,195,165,.18);padding:20px 0;overflow:hidden;background:var(--bg)}
@@ -134,11 +132,13 @@ section{padding:clamp(90px,12vw,150px) 0;position:relative}
 .track::-webkit-scrollbar{display:none}
 .tile{flex:0 0 auto;width:clamp(150px,17vw,220px);aspect-ratio:9/16;border-radius:14px;overflow:hidden;position:relative;cursor:pointer;scroll-snap-align:start;
   transition:transform .5s cubic-bezier(.2,.8,.2,1),box-shadow .5s;background:#1a0a0e;box-shadow:0 20px 40px -20px #000}
-.tile:hover{transform:scale(1.08) translateY(-6px) rotateY(-6deg);z-index:2;box-shadow:0 30px 60px -20px rgba(194,58,90,.6)}
+@media (hover:hover) and (pointer:fine){.tile:hover{transform:scale(1.08) translateY(-6px) rotateY(-6deg);z-index:2;box-shadow:0 30px 60px -20px rgba(194,58,90,.6)}}
+.tile:active{transform:scale(.97)}
 .tile::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 55%,rgba(8,3,5,.9))}
 .tile span{position:absolute;left:14px;right:14px;bottom:12px;z-index:2;font-family:var(--serif);font-size:19px;line-height:1.15}
 .tile .pl{position:absolute;top:12px;right:12px;z-index:2;width:30px;height:30px;border-radius:50%;background:rgba(244,235,227,.9);color:var(--wine);display:grid;place-items:center;font-size:11px;opacity:0;transition:opacity .3s}
 .tile:hover .pl{opacity:1}
+@media (hover:none){.tile .pl{opacity:1}}
 
 /* neon + 3D ring */
 .designs{background:radial-gradient(ellipse at 50% 70%,rgba(107,19,38,.45),transparent 60%),var(--bg);text-align:center;overflow:hidden}
@@ -162,6 +162,7 @@ section{padding:clamp(90px,12vw,150px) 0;position:relative}
 .steps-visual{position:sticky;top:110px;aspect-ratio:9/14;max-height:76vh;justify-self:center;width:100%;max-width:420px;perspective:1200px}
 .steps-visual .m{position:absolute;inset:0;border-radius:24px;overflow:hidden;opacity:0;transform:rotateY(25deg) scale(.9);transition:opacity .9s,transform 1.2s cubic-bezier(.2,.8,.2,1)}
 .steps-visual .m.on{opacity:1;transform:none}
+.step-m{display:none}
 .step{min-height:70vh;display:flex;flex-direction:column;justify-content:center;opacity:.22;transition:opacity .6s}
 .step.on{opacity:1}
 .step .n{font-family:var(--serif);font-size:92px;font-style:italic;color:var(--champ);line-height:1;font-weight:300}
@@ -181,7 +182,7 @@ section{padding:clamp(90px,12vw,150px) 0;position:relative}
 .prom{background:var(--navy)}
 .prom-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
 .pr{padding:34px 26px;border-radius:20px;border:1px solid rgba(217,195,165,.18);background:rgba(244,235,227,.03);transition:transform .45s,border-color .45s}
-.pr:hover{transform:translateY(-8px) rotateX(6deg);border-color:var(--champ)}
+@media (hover:hover) and (pointer:fine){.pr:hover{transform:translateY(-8px) rotateX(6deg);border-color:var(--champ)}}
 .pr b{display:block;font-family:var(--serif);font-size:36px;font-weight:400;color:var(--blush);line-height:1.05;margin-bottom:12px}
 .pr span{color:var(--muted);font-size:15px}
 
@@ -221,8 +222,10 @@ footer a:hover{color:#fff}
 
 @media (max-width:860px){
   .ft-grid{grid-template-columns:1fr;gap:50px}.phone3d{order:-1}
-  .steps-grid{grid-template-columns:1fr;gap:0}.steps-visual{top:74px;aspect-ratio:4/5;max-height:44vh;z-index:1}
-  .step{min-height:56vh}
+  .steps-grid{grid-template-columns:1fr;gap:0}.steps-visual{display:none}
+  .step{min-height:0;opacity:1;padding:26px 0 34px}
+  .step-m{display:block;aspect-ratio:4/5;max-width:420px;border-radius:20px;overflow:hidden;margin-bottom:20px}
+  nav.scrolled{backdrop-filter:none;background:rgba(12,6,8,.94)}
   .prom-grid{grid-template-columns:1fr 1fr}
   form{grid-template-columns:1fr}
   .ft-in{grid-template-columns:1fr;gap:30px}
@@ -267,12 +270,14 @@ footer a:hover{color:#fff}
   </div>
 </header>
 
-<section id="aerial" style="padding:0"><div class="a-stage">
-  <div class="a-bg"><video data-src="media/aerial.mp4" poster="media/aerial.jpg" muted loop playsinline></video></div>
-  <div class="a-side l" id="aL"><b>MARRY ME</b>буквы в человеческий рост, красная дорожка и сердце из роз</div>
-  <div class="a-frame" id="aF"><video data-src="media/aerial.mp4" poster="media/aerial.jpg" muted loop playsinline></video></div>
-  <div class="a-side r" id="aR"><b>Салют</b>фонтаны огня в момент, когда она говорит «да»</div>
-  <div class="a-cap" id="aC"><p class="eyebrow">Вид сверху · Павлодар</p><h2 style="margin-top:12px">Вот как это <em>выглядит</em></h2></div>
+<section id="aerial"><div class="wrap">
+  <p class="eyebrow r">Вид сверху · Павлодар</p>
+  <h2 class="r d1" style="font-size:clamp(40px,6vw,76px);margin-top:14px">Вот как это <em>выглядит</em></h2>
+  <div class="a-row">
+    <div class="a-side l r d2"><b>MARRY ME</b>буквы в человеческий рост, красная дорожка и сердце из роз</div>
+    <div class="a-frame r d1"><video data-src="media/aerial.mp4" poster="media/aerial.jpg" muted loop playsinline></video></div>
+    <div class="a-side r d3"><b>Салют</b>фонтаны огня в момент, когда она говорит «да»</div>
+  </div>
 </div></section>
 
 <div class="marquee"><div>
@@ -316,10 +321,10 @@ footer a:hover{color:#fff}
       <div class="m"><video data-src="media/s4.mp4" poster="media/s4.jpg" muted loop playsinline></video></div>
     </div>
     <div>
-      <div class="step on"><span class="n">01</span><h3>Вы пишете нам</h3><p>Кого поздравляем, какой повод, дата и бюджет. Пять минут в WhatsApp — и мы уже придумываем.</p></div>
-      <div class="step"><span class="n">02</span><h3>Подбираем оформление</h3><p>Сердце, надпись, буквы, лепестки, свечи, салют. Ресторан, набережная, двор дома или роддом.</p></div>
-      <div class="step"><span class="n">03</span><h3>Наступает момент</h3><p>Приезжаем заранее, всё устанавливаем и прячемся. Вы ведёте человека — с закрытыми глазами.</p></div>
-      <div class="step"><span class="n">04</span><h3>Салют и «ДА!»</h3><p>Загорается неон, взлетают искры, а реакция остаётся на видео — на всю жизнь.</p></div>
+      <div class="step on"><div class="step-m"><video data-src="media/s1.mp4" poster="media/s1.jpg" muted loop playsinline></video></div><span class="n">01</span><h3>Вы пишете нам</h3><p>Кого поздравляем, какой повод, дата и бюджет. Пять минут в WhatsApp — и мы уже придумываем.</p></div>
+      <div class="step"><div class="step-m"><video data-src="media/s2.mp4" poster="media/s2.jpg" muted loop playsinline></video></div><span class="n">02</span><h3>Подбираем оформление</h3><p>Сердце, надпись, буквы, лепестки, свечи, салют. Ресторан, набережная, двор дома или роддом.</p></div>
+      <div class="step"><div class="step-m"><video data-src="media/s3.mp4" poster="media/s3.jpg" muted loop playsinline></video></div><span class="n">03</span><h3>Наступает момент</h3><p>Приезжаем заранее, всё устанавливаем и прячемся. Вы ведёте человека — с закрытыми глазами.</p></div>
+      <div class="step"><div class="step-m"><video data-src="media/s4.mp4" poster="media/s4.jpg" muted loop playsinline></video></div><span class="n">04</span><h3>Салют и «ДА!»</h3><p>Загорается неон, взлетают искры, а реакция остаётся на видео — на всю жизнь.</p></div>
     </div>
   </div>
 </div></section>
@@ -414,8 +419,9 @@ rowsEl.querySelectorAll(".rowx").forEach(r => {
   b1.onclick = () => tr.scrollBy({ left: -tr.clientWidth * .8, behavior: "smooth" });
   b2.onclick = () => tr.scrollBy({ left: tr.clientWidth * .8, behavior: "smooth" });
 });
-// tiles play on hover (desktop); poster only on touch
-document.querySelectorAll(".tile").forEach(t => {
+// tiles play on hover only where a real mouse exists: on iPhone a hover handler swallows the first tap
+const canHover = matchMedia("(hover: hover) and (pointer: fine)").matches;
+if (canHover) document.querySelectorAll(".tile").forEach(t => {
   const v = t.querySelector("video");
   t.addEventListener("mouseenter", () => { if (!v.src) v.src = v.dataset.src; v.play().catch(() => {}); });
   t.addEventListener("mouseleave", () => v.pause());
@@ -439,19 +445,8 @@ const vio = new IntersectionObserver(es => es.forEach(e => {
   const v = e.target;
   if (e.isIntersecting) { if (!v.src) v.src = v.dataset.src; if (!reduce) v.play().catch(() => {}); } else v.pause();
 }), { rootMargin: "150px" });
-document.querySelectorAll(".phone video, .steps-visual video, #aerial video").forEach(v => vio.observe(v));
-
-const aerial = document.getElementById("aerial"), aF = document.getElementById("aF"), aC = document.getElementById("aC"), aL = document.getElementById("aL"), aR = document.getElementById("aR");
-function aerialScroll() {
-  const r = aerial.getBoundingClientRect(), p = clamp(-r.top / (r.height - innerHeight)), e = smooth(0, .7, p);
-  // starts as a small rounded window, opens to full height and widens to fill the screen
-  const fill = Math.max(1, innerWidth / (innerHeight * 9 / 16));
-  aF.style.transform = `scale(${(.55 + .45 * e) * (1 + (fill - 1) * smooth(.55, 1, p))})`;
-  aF.style.borderRadius = `${28 * (1 - e)}px`;
-  aL.style.opacity = aR.style.opacity = 1 - smooth(.35, .6, p);
-  aC.style.opacity = smooth(.25, .5, p) * (1 - smooth(.9, 1, p));
-}
-addEventListener("scroll", aerialScroll, { passive: true }); addEventListener("resize", aerialScroll); aerialScroll();
+// on phones only the per-step videos exist (the sticky visual is hidden), on desktop the reverse
+document.querySelectorAll(mobile ? ".phone video, .step-m video, #aerial video" : ".phone video, .steps-visual video, #aerial video").forEach(v => vio.observe(v));
 
 /* ---------- reveal ---------- */
 const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { threshold: .12 });
@@ -529,7 +524,7 @@ function heroProgress() {
 if (window.THREE) {
   const cv = document.getElementById("gl");
   const renderer = new THREE.WebGLRenderer({ canvas: cv, antialias: false, alpha: true });
-  renderer.setPixelRatio(Math.min(devicePixelRatio, 1.6));
+  renderer.setPixelRatio(Math.min(devicePixelRatio, mobile ? 1.25 : 1.6));
   const scene = new THREE.Scene(); scene.fog = new THREE.FogExp2(0x0c0608, .011);
   const cam = new THREE.PerspectiveCamera(60, 1, .1, 500); cam.position.set(0, 0, 70);
   const resize = () => { const w = cv.offsetWidth, h = cv.offsetHeight; renderer.setSize(w, h, false); cam.aspect = w / h; cam.position.z = w < h ? 95 : 70; cam.updateProjectionMatrix(); };
@@ -538,7 +533,7 @@ if (window.THREE) {
   const g = tx.createRadialGradient(32, 32, 0, 32, 32, 32); g.addColorStop(0, "rgba(255,255,255,1)"); g.addColorStop(.25, "rgba(255,255,255,.7)"); g.addColorStop(1, "rgba(255,255,255,0)");
   tx.fillStyle = g; tx.fillRect(0, 0, 64, 64); const sprite = new THREE.CanvasTexture(tc);
 
-  const N = mobile ? 4000 : 8000, base = new Float32Array(N * 3), dir = new Float32Array(N * 3), pos = new Float32Array(N * 3), col = new Float32Array(N * 3);
+  const N = mobile ? 2600 : 8000, base = new Float32Array(N * 3), dir = new Float32Array(N * 3), pos = new Float32Array(N * 3), col = new Float32Array(N * 3);
   const c1 = new THREE.Color("#c23a5a"), c2 = new THREE.Color("#e8a3b0"), c3 = new THREE.Color("#d9c3a5"), c4 = new THREE.Color("#6b1326"), tmp = new THREE.Color();
   for (let i = 0; i < N; i++) {
     const t = Math.random() * Math.PI * 2, shell = Math.random() < .65, s = shell ? 1 - Math.random() * .08 : Math.sqrt(Math.random());
@@ -657,7 +652,7 @@ if (!reduce) {
     for (let k = -3; k <= 3; k++) { g.beginPath(); g.moveTo(0, 38); g.quadraticCurveTo(k * 7, 0, k * 9, -36); g.stroke(); }
     g.restore(); return s;
   });
-  const P = Array.from({ length: mobile ? 11 : 20 }, () => ({
+  const P = Array.from({ length: mobile ? 8 : 20 }, () => ({
     x: Math.random() * innerWidth, y: Math.random() * innerHeight - innerHeight, z: .5 + Math.random() * .8,
     img: sprites[Math.random() * sprites.length | 0], rx: Math.random() * 6, ry: Math.random() * 6, rz: Math.random() * 6,
     vrx: .01 + Math.random() * .025, vry: .008 + Math.random() * .02, vrz: (Math.random() - .5) * .02, ph: Math.random() * 6, vy: .5 + Math.random() * .6 }));
@@ -674,7 +669,7 @@ if (!reduce) {
       if (p.y > PH + 60) { p.y = -60; p.x = Math.random() * PW; }
       const sz = (mobile ? 40 : 50) * p.z, sx = Math.cos(p.ry), sy = Math.cos(p.rx);
       c.save(); c.translate(p.x, p.y); c.rotate(p.rz); c.scale(sx || .02, sy || .02);
-      c.globalAlpha = .55 + .45 * p.z; c.filter = p.z < .75 ? "blur(1.2px)" : "none"; // depth of field
+      c.globalAlpha = .45 + .55 * p.z; // far petals fainter (canvas blur is too slow on phones)
       c.drawImage(p.img, -sz / 2, -sz / 2, sz, sz); c.restore();
     }
   })(0);
@@ -695,7 +690,9 @@ document.getElementById("form").addEventListener("submit", e => {
   e.preventDefault(); const f = new FormData(e.target);
   const text = `Здравствуйте! Меня зовут ${f.get("name")}.\nПовод: ${f.get("occ")}\nДата: ${f.get("date") || "уточню"}\n${f.get("msg")}`;
   fw2c.show(5);
-  setTimeout(() => open(waLink(text), "_blank"), 1200);
+  // must open synchronously inside the tap, or iPhone Safari blocks it as a popup
+  const url = waLink(text);
+  if (mobile || !window.open(url, "_blank")) location.href = url;
 });
 </script>
 </body>
