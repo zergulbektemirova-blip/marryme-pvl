@@ -1,3 +1,4 @@
 # original footage stays private and local; the site only uses the web cuts in media/
 /IMG_*
 .claude/
+/promo/
